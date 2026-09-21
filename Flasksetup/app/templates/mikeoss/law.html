@@ -1,5 +1,5 @@
 {% extends "base_AI.html" %}
-{% block title %}ThinkerStreet Law — with MikeOSS{% endblock %}
+{% block title %}ThinkerStreet Law with MikeOSS{% endblock %}
 {% block body_class %}law-page{% endblock %}
 {% block head %}
   {{ super() }}
@@ -8,50 +8,90 @@
 {% block content %}
 <section class="law-shell" aria-label="ThinkerStreet Law workspace">
   <header class="law-header">
-    <div>
+    <div class="law-brand">
       <p class="law-kicker">THINKERSTREET AI</p>
-      <h1>Law <span>with MikeOSS</span></h1>
+      <h1>Law</h1>
+      <p class="law-tagline">Private-first legal tools for lawyers.</p>
     </div>
-    <nav aria-label="Law workspace actions">
-      <button id="lawSessionsButton" type="button" aria-expanded="false">Sessions <b id="lawSessionCount">1</b></button>
+    <div class="law-header-actions">
+      <button id="lawSessionsButton" type="button" aria-expanded="false">Sessions <span id="lawSessionCount">1</span></button>
       <button id="lawNewButton" type="button">New</button>
       <button id="lawClearButton" type="button">Clear</button>
-    </nav>
+    </div>
   </header>
-
   <aside id="lawSessions" class="law-sessions" hidden aria-label="Browser sessions"></aside>
-
-  <div id="lawMessages" class="law-messages" aria-live="polite">
+  <main id="lawMessages" class="law-messages" aria-live="polite">
     <div class="law-empty" id="lawEmpty">
-      <p class="law-empty-kicker">PRIVATE-FIRST LEGAL TOOLS</p>
-      <h2>Review, compare, research, and draft.</h2>
-      <p>This lightweight Flask edition keeps up to three conversations in this browser. Verify authorities and important legal work.</p>
+      <p class="law-empty-kicker">THINKERSTREET LAW</p>
+      <h2>Analyze, research, compare, and draft.</h2>
+      <p>Legal AI for lawyers with privacy-oriented workflows, temporary browser sessions, and Zero Data Retention when enabled for the configured model provider.</p>
+      <p class="law-empty-note">Verify authorities and important legal work before relying on model output.</p>
     </div>
-  </div>
-
-  <div class="law-composer-dock" style="--tier-color:#38a7ff">
-    <div class="law-tier-picker" role="group" aria-label="Intelligence level">
-      <button type="button" data-law-tier="fast" style="--option-color:#33ff72">FAST</button>
-      <button type="button" data-law-tier="smart" class="active" style="--option-color:#38a7ff">SMART</button>
-      <button type="button" data-law-tier="deep" style="--option-color:#ff38e8">DEEP</button>
-    </div>
+  </main>
+  <div class="law-composer-dock" id="lawComposerDock" style="--tier-color:#38a7ff">
     <form id="lawComposer" class="law-composer">
       <textarea id="lawInput" rows="2" maxlength="16000" placeholder="Ask ThinkerStreet Law" aria-label="Ask ThinkerStreet Law"></textarea>
       <div class="law-controls">
-        <span id="lawStatus" role="status" aria-live="polite">Browser session · not saved by this Flask module</span>
-        <button id="lawSend" type="submit" aria-label="Send message">›</button>
+        <button id="lawPlus" class="law-plus" type="button" aria-label="More tools">+</button>
+        <button id="lawTierButton" class="law-tier-current" type="button" aria-haspopup="dialog"><span id="lawTierLabel">SMART</span></button>
+        <div class="law-tier-meter" aria-label="Selected community token pool">
+          <div class="law-tier-track"><span id="lawTierFill"></span></div>
+          <span id="lawTierTokens">--</span>
+        </div>
+        <span class="law-control-spacer"></span>
+        <button id="lawSend" class="law-send" type="submit" aria-label="Send message">&gt;</button>
       </div>
     </form>
   </div>
-
+  <div id="lawTierOverlay" class="law-overlay" hidden>
+    <button class="law-overlay-backdrop" type="button" aria-label="Close intelligence selector"></button>
+    <section class="law-tier-dialog" role="dialog" aria-modal="true" aria-labelledby="lawTierTitle">
+      <p class="law-dialog-kicker">INTELLIGENCE</p>
+      <h2 id="lawTierTitle">Choose a model tier</h2>
+      <div class="law-tier-options">
+        <button type="button" data-law-tier="fast" style="--option-color:#33ff72">
+          <span class="law-tier-option-head"><b>FAST</b><span data-tier-tokens="fast">--</span></span>
+          <span class="law-tier-option-copy">Quick, economical legal work.</span>
+          <span class="law-option-track"><span data-tier-fill="fast"></span></span>
+        </button>
+        <button type="button" data-law-tier="smart" style="--option-color:#38a7ff">
+          <span class="law-tier-option-head"><b>SMART</b><span data-tier-tokens="smart">--</span></span>
+          <span class="law-tier-option-copy">Strong general legal analysis.</span>
+          <span class="law-option-track"><span data-tier-fill="smart"></span></span>
+        </button>
+        <button type="button" data-law-tier="deep" style="--option-color:#ff38e8">
+          <span class="law-tier-option-head"><b>DEEP</b><span data-tier-tokens="deep">--</span></span>
+          <span class="law-tier-option-copy">More intensive reasoning for difficult work.</span>
+          <span class="law-option-track"><span data-tier-fill="deep"></span></span>
+        </button>
+      </div>
+    </section>
+  </div>
+  <div id="lawFeatureOverlay" class="law-overlay" hidden>
+    <button class="law-overlay-backdrop" type="button" aria-label="Close feature notice"></button>
+    <section class="law-feature-dialog" role="dialog" aria-modal="true">
+      <p class="law-dialog-kicker">THINKERSTREET LAW</p>
+      <h2>Feature Coming Soon!</h2>
+      <p>Documents, attachments, research sources, and additional legal tools will live here.</p>
+    </section>
+  </div>
   <footer class="law-footer">
-    Powered by <a href="https://github.com/Open-Legal-Products/mike" rel="noopener noreferrer">MikeOSS</a> under AGPL-3.0. Model processing is subject to the configured provider.
+    <span>ThinkerStreet Law</span><span class="law-footer-dot">|</span>
+    <span>Powered in part by MikeOSS</span><span class="law-footer-dot">|</span>
+    <a href="https://github.com/ThinkerStreet/mike_law_AI/tree/thinkerstreet-law" rel="noopener noreferrer">Source (AGPL-3.0)</a>
+    <span class="law-footer-dot">|</span>
+    <a href="{{ url_for('thinkerstreet_ai.privacy') }}">Privacy</a>
   </footer>
 </section>
 {% endblock %}
 {% block scripts %}
   {{ super() }}
-  <script>window.THINKERSTREET_LAW = { chatUrl: {{ url_for('mikeoss_law.law_chat')|tojson }} };</script>
+  <script>
+    window.THINKERSTREET_LAW = {
+      chatUrl: {{ url_for('mikeoss_law.law_chat')|tojson }},
+      communityUrl: {{ url_for('thinkerstreet_ai.community_status')|tojson }},
+      zdrEnabled: {{ (zdr_enabled if zdr_enabled is defined else false)|tojson }}
+    };
+  </script>
   <script src="{{ url_for('static', filename='mikeoss/js/law.js') }}" defer></script>
 {% endblock %}
-

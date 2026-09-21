@@ -17,9 +17,10 @@ export function SiteLogo({
     asLink = false,
 }: SiteLogoProps) {
     const landingHref =
-        process.env.NODE_ENV === "production"
-            ? "https://mikeoss.com"
-            : "http://localhost:3000";
+        process.env.NEXT_PUBLIC_THINKERSTREET_HOME_URL ||
+        (process.env.NODE_ENV === "production"
+            ? "https://thinkerstreet.com"
+            : "http://localhost:5000");
     const sizeClasses = {
         sm: "text-xl",
         md: "text-2xl",
@@ -45,7 +46,11 @@ export function SiteLogo({
             >
                 <MikeIcon size={iconSizes[size]} />
             </span>
-            <span>Mike</span>
+            <span className="tracking-[-0.045em]">ThinkerStreet</span>
+            <span className="font-sans text-[0.34em] font-semibold uppercase tracking-[0.2em] text-fuchsia-500">
+                Law
+            </span>
+            <span className="sr-only"> powered by MikeOSS</span>
         </h1>
     );
 
@@ -53,6 +58,7 @@ export function SiteLogo({
         return (
             <Link
                 href={landingHref}
+                aria-label="ThinkerStreet AI home"
                 className="cursor-pointer hover:opacity-80 transition-opacity"
             >
                 {logo}

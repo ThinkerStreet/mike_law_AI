@@ -1,0 +1,57 @@
+{% extends "base_AI.html" %}
+{% block title %}ThinkerStreet Law — with MikeOSS{% endblock %}
+{% block body_class %}law-page{% endblock %}
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='mikeoss/css/law.css') }}">
+{% endblock %}
+{% block content %}
+<section class="law-shell" aria-label="ThinkerStreet Law workspace">
+  <header class="law-header">
+    <div>
+      <p class="law-kicker">THINKERSTREET AI</p>
+      <h1>Law <span>with MikeOSS</span></h1>
+    </div>
+    <nav aria-label="Law workspace actions">
+      <button id="lawSessionsButton" type="button" aria-expanded="false">Sessions <b id="lawSessionCount">1</b></button>
+      <button id="lawNewButton" type="button">New</button>
+      <button id="lawClearButton" type="button">Clear</button>
+    </nav>
+  </header>
+
+  <aside id="lawSessions" class="law-sessions" hidden aria-label="Browser sessions"></aside>
+
+  <div id="lawMessages" class="law-messages" aria-live="polite">
+    <div class="law-empty" id="lawEmpty">
+      <p class="law-empty-kicker">PRIVATE-FIRST LEGAL TOOLS</p>
+      <h2>Review, compare, research, and draft.</h2>
+      <p>This lightweight Flask edition keeps up to three conversations in this browser. Verify authorities and important legal work.</p>
+    </div>
+  </div>
+
+  <div class="law-composer-dock" style="--tier-color:#38a7ff">
+    <div class="law-tier-picker" role="group" aria-label="Intelligence level">
+      <button type="button" data-law-tier="fast" style="--option-color:#33ff72">FAST</button>
+      <button type="button" data-law-tier="smart" class="active" style="--option-color:#38a7ff">SMART</button>
+      <button type="button" data-law-tier="deep" style="--option-color:#ff38e8">DEEP</button>
+    </div>
+    <form id="lawComposer" class="law-composer">
+      <textarea id="lawInput" rows="2" maxlength="16000" placeholder="Ask ThinkerStreet Law" aria-label="Ask ThinkerStreet Law"></textarea>
+      <div class="law-controls">
+        <span id="lawStatus" role="status" aria-live="polite">Browser session · not saved by this Flask module</span>
+        <button id="lawSend" type="submit" aria-label="Send message">›</button>
+      </div>
+    </form>
+  </div>
+
+  <footer class="law-footer">
+    Powered by <a href="https://github.com/Open-Legal-Products/mike" rel="noopener noreferrer">MikeOSS</a> under AGPL-3.0. Model processing is subject to the configured provider.
+  </footer>
+</section>
+{% endblock %}
+{% block scripts %}
+  {{ super() }}
+  <script>window.THINKERSTREET_LAW = { chatUrl: {{ url_for('mikeoss_law.law_chat')|tojson }} };</script>
+  <script src="{{ url_for('static', filename='mikeoss/js/law.js') }}" defer></script>
+{% endblock %}
+

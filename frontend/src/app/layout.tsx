@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, EB_Garamond } from "next/font/google";
 import "./globals.css";
+import "./thinkerstreet.css";
 import { Providers } from "@/app/components/providers";
 
 const inter = Inter({
@@ -15,10 +16,10 @@ const ebGaramond = EB_Garamond({
 });
 
 export const metadata: Metadata = {
-    metadataBase: new URL("https://app.mikeoss.com"),
-    title: "Mike - AI Legal Platform",
+    metadataBase: new URL("https://thinkerstreet.com"),
+    title: "ThinkerStreet Law — powered by MikeOSS",
     description:
-        "AI-powered legal document analysis and contract review platform.",
+        "Private-first legal document analysis, drafting, and research from ThinkerStreet AI, powered by MikeOSS.",
     icons: {
         icon: [
             { url: "/icon.svg", type: "image/svg+xml" },
@@ -28,25 +29,25 @@ export const metadata: Metadata = {
     },
     openGraph: {
         type: "website",
-        url: "https://app.mikeoss.com",
-        siteName: "Mike",
-        title: "Mike - AI Legal Platform",
+        url: "https://thinkerstreet.com/law",
+        siteName: "ThinkerStreet Law",
+        title: "ThinkerStreet Law — powered by MikeOSS",
         description:
-            "AI-powered legal document analysis and contract review platform.",
+            "Private-first legal document analysis, drafting, and research from ThinkerStreet AI.",
         images: [
             {
                 url: "/link-image.jpg",
                 width: 1200,
                 height: 651,
-                alt: "Mike",
+                alt: "ThinkerStreet Law",
             },
         ],
     },
     twitter: {
         card: "summary_large_image",
-        title: "Mike - AI Legal Platform",
+        title: "ThinkerStreet Law — powered by MikeOSS",
         description:
-            "AI-powered legal document analysis and contract review platform.",
+            "Private-first legal document analysis, drafting, and research from ThinkerStreet AI.",
         images: ["/link-image.jpg"],
     },
 };

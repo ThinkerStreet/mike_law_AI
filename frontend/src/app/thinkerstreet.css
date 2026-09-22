@@ -1,0 +1,27 @@
+/* ThinkerStreet Law composer skin. These selectors intentionally decorate
+   MikeOSS's existing accessible composer without copying its behavior. */
+[class*="liquid-glass-translucent"]:has(textarea[role="combobox"]) {
+    border: 2px solid color-mix(in srgb, #38a7ff 72%, white) !important;
+    background:
+        linear-gradient(180deg, rgba(5, 10, 20, 0.96), rgba(2, 6, 14, 0.94)) !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.055),
+        0 0 38px rgba(56, 167, 255, 0.14),
+        0 24px 58px rgba(0, 0, 0, 0.34) !important;
+}
+
+[class*="liquid-glass-translucent"]:has(textarea[role="combobox"]):focus-within {
+    border-color: color-mix(in srgb, #38a7ff 86%, white) !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.07),
+        0 0 48px rgba(56, 167, 255, 0.22),
+        0 26px 62px rgba(0, 0, 0, 0.42) !important;
+}
+
+textarea[role="combobox"] {
+    color: #f5f7fb !important;
+}
+
+textarea[role="combobox"]::placeholder {
+    color: rgba(245, 247, 251, 0.38) !important;
+}
